@@ -110,7 +110,7 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
 
 <!-- PayPal Hosted Buttons SDK -->
 <script
-  src="https://www.paypal.com/sdk/js?client-id=BAAZ5s351j75JSKqO00ZMqB5GVGHbaPpAmKajmPsfqBjUxFAJioy4iCxecN8w6rm2EokDacJoKpt_moF1A&components=hosted-buttons&enable-funding=venmo&currency=USD">
+  src="https://www.paypal.com/sdk/js?client-id=BAAZ5s351j75JSKqO00ZMqB5GVGHbaPpAmKajmPsfqBjUxFAJioy4iCxecN8w6rm2EokDacJoKpt_moF1A&components=hosted-buttons&currency=USD&disable-funding=card,credit,paylater,venmo">
 </script>
 
 
@@ -240,6 +240,14 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
 .late-registration-placeholder,.registration-closed-message{display:none;margin-top:16px;padding:18px;border:1px solid var(--line);border-radius:8px;background:#fff}
 </style>
 
+
+<style>
+/* Keep the registration UI focused on the generic Checkout option. */
+[id^="paypal-container-"] iframe{
+  max-width:100%;
+}
+</style>
+
 </head>
 <body>
 <header><div class="wrap nav"><div class="brandbox"><div class="brand">SACP <span>at SKKU, South Korea</span></div><div class="conference-tag">59th Annual Conference · 2027<small>Society for Asian and Comparative Philosophy</small></div></div><nav class="navlinks" id="siteNav"><a href="#about">About</a><a href="#dates">Dates</a><a href="#themes">Themes</a><a href="#keynotes">Keynotes</a><a href="#cfp">CFP</a><a href="#awards">Awards</a><a href="#registration">Registration</a><a href="#travel">Venue & Travel</a><a href="#contact">Contact</a><a class="navcta" href="#cfp">Submit a Proposal</a></nav><button class="mobile-menu" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button></div></header>
@@ -314,8 +322,8 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
       <div class="payment-step early-registration-payment">
         <span class="payment-step-number">Step 2</span>
         <h4>Early Conference Registration — $150</h4>
-        <p>After completing membership payment, use the official PayPal button below to pay the early registration fee.</p>
-        <p><strong>Pay Early Registration Fee (Regular)</strong></p>
+        <p>After completing membership payment, use the Checkout button below to pay the early registration fee.</p>
+        <p><strong>Checkout — Early Registration (Regular)</strong></p>
         <div id="paypal-container-34KPUXUHQBFAC"></div>
         <script>
           paypal.HostedButtons({
@@ -353,8 +361,8 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
       <div class="payment-step early-registration-payment">
         <span class="payment-step-number">Step 2</span>
         <h4>Early Conference Registration — $30</h4>
-        <p>After completing membership payment, use the official PayPal button below to pay the early registration fee.</p>
-        <p><strong>Pay Early Registration Fee (Student / Emeritus)</strong></p>
+        <p>After completing membership payment, use the Checkout button below to pay the early registration fee.</p>
+        <p><strong>Checkout — Early Registration (Student / Emeritus)</strong></p>
         <div id="paypal-container-95E6MM5C8QK84"></div>
         <script>
           paypal.HostedButtons({
@@ -372,7 +380,7 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
         <div class="registration-payment-option">
           <h4>Regular</h4>
           <p class="fee">$150 USD</p>
-          <p><strong>Pay Early Registration Fee</strong></p>
+          <p><strong>Checkout</strong></p>
           <div id="paypal-container-34KPUXUHQBFAC-attendee"></div>
           <script>
             paypal.HostedButtons({
@@ -384,7 +392,7 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
         <div class="registration-payment-option">
           <h4>Student / Emeritus</h4>
           <p class="fee">$30 USD</p>
-          <p><strong>Pay Early Registration Fee</strong></p>
+          <p><strong>Checkout</strong></p>
           <div id="paypal-container-95E6MM5C8QK84-attendee"></div>
           <script>
             paypal.HostedButtons({
@@ -414,7 +422,7 @@ section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
   </div>
 
 <div class="notice" style="margin-top:22px">
-    <strong>PayPal payments:</strong> The Early Registration buttons above use the official SACP PayPal Hosted Buttons supplied for the 2027 conference. Payments open and are processed through PayPal.
+    <strong>Checkout:</strong> The Early Registration buttons above use the official SACP PayPal Hosted Buttons supplied for the 2027 conference. Payment methods, including PayPal where available, are selected within the checkout process.
   </div>
 
   <div class="notice" style="margin-top:22px">
