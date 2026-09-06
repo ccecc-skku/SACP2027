@@ -1,373 +1,102 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SACP 2027 | 59th Annual Conference</title>
+from pathlib import Path
+import shutil, zipfile, re
 
-<link rel="canonical" href="https://sacp2027.skku.edu/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SACP 2027 at SKKU">
-<meta property="og:title" content="SACP 2027 at SKKU, South Korea">
-<meta property="og:description" content="59th Annual Conference of the Society for Asian and Comparative Philosophy, June 4–7, 2027, Sungkyunkwan University, Seoul.">
-<meta property="og:url" content="https://sacp2027.skku.edu/">
-<meta property="og:image" content="https://sacp2027.skku.edu/images/myeongnyundang-social.jpg">
-<meta property="og:image:secure_url" content="https://sacp2027.skku.edu/images/myeongnyundang-social.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Myeongnyundang at Sungkyunkwan University, Seoul">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SACP 2027 at SKKU, South Korea">
-<meta name="twitter:description" content="59th Annual Conference of the Society for Asian and Comparative Philosophy, June 4–7, 2027, Sungkyunkwan University, Seoul.">
-<meta name="twitter:image" content="https://sacp2027.skku.edu/images/myeongnyundang-social.jpg">
+src_dir = Path("/mnt/data/sacp2027_github_ready_walking_guide")
+out_dir = Path("/mnt/data/sacp2027_github_ready_walking_photos")
 
-<meta name="description" content="SACP 59th Annual Conference — Embodiment and Agency Across Texts and Traditions, June 4–7, 2027, Sungkyunkwan University, Seoul.">
-<style>
-:root{--navy:#082d58;--navy2:#0d3a6e;--gold:#b98a35;--cream:#f8f7f2;--ink:#152238;--muted:#596579;--line:#dfe4ea;--white:#fff;--shadow:0 12px 35px rgba(16,42,72,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;line-height:1.55}a{color:inherit;text-decoration:none}.serif{font-family:Georgia,"Times New Roman",serif}.wrap{max-width:1480px;margin:auto;padding:0 42px}
-header{height:78px;display:flex;align-items:center;background:#fff;border-bottom:1px solid #edf0f4;position:sticky;top:0;z-index:50}.nav{display:flex;align-items:center;justify-content:space-between;width:100%;gap:28px}.brandbox{display:flex;align-items:center;gap:18px;white-space:nowrap}.brand{font-family:Georgia,serif;font-size:36px;letter-spacing:.01em;color:var(--navy);font-weight:700}.brand span{color:var(--gold);font-weight:500;font-size:.78em;letter-spacing:.02em}.conference-tag{border-left:1px solid var(--line);padding-left:18px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);font-weight:800;line-height:1.3}.conference-tag small{display:block;font-size:9px;letter-spacing:.11em;margin-top:3px;font-weight:600}.navlinks{display:flex;align-items:center;gap:26px;font-size:12px;font-weight:800;color:var(--navy);text-transform:uppercase}.navlinks a:hover{color:var(--gold)}.navcta{padding:12px 18px;background:var(--navy);color:#fff;border-radius:4px}
-.hero{position:relative;background:linear-gradient(90deg,#f5f8fb 0%,#fff 44%,#f4f7fa 100%);overflow:hidden}.hero-grid{display:grid;grid-template-columns:43% 57%;min-height:520px}.hero-copy{padding:58px 34px 82px max(42px,calc((100vw - 1480px)/2 + 42px));display:flex;flex-direction:column;justify-content:center;position:relative;z-index:3;background:linear-gradient(90deg,#f8fbfd 0%,rgba(255,255,255,.98) 74%,rgba(255,255,255,.25) 100%)}.hero-org{font-family:Georgia,serif;font-size:34px;line-height:1.17;color:var(--navy);font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:14px}.hero-annual{font-size:22px;letter-spacing:.18em;color:var(--gold);font-weight:800;text-transform:uppercase;margin-bottom:14px}.gold-rule{width:90px;height:2px;background:var(--gold);margin:0 0 18px}.hero-theme{font-family:Georgia,serif;font-style:italic;color:var(--navy);font-size:31px;line-height:1.25;margin-bottom:28px}.hero-details{display:flex;gap:34px;align-items:center;margin-bottom:24px}.meta{display:flex;align-items:center;gap:12px;color:var(--navy);font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em}.meta+.meta{padding-left:28px;border-left:1px solid #bfc8d2}.icon{width:34px;height:34px;border-radius:50%;background:var(--navy);color:white;display:grid;place-items:center;font-size:15px;flex:0 0 auto}.meta small{display:block;font-size:11px;color:#40526b;font-weight:600;margin-top:2px}.actions{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:4px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;border:1px solid var(--gold)}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.btn.secondary{background:#fff;color:var(--gold)}.hero-image{position:relative;min-height:520px;background-image:url(images/myeongnyundang.png);background-size:cover;background-position:center center}.hero-image:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.48),rgba(255,255,255,0) 22%)}
-.dates-wrap{position:relative;z-index:8;margin-top:-40px}.datebar{max-width:1400px;margin:auto;background:#fff;border:1px solid #e3e7ec;box-shadow:var(--shadow);border-radius:10px;display:grid;grid-template-columns:300px repeat(6,1fr);overflow:hidden}.date-label{background:var(--navy);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;text-transform:uppercase;font-size:13px;clip-path:polygon(0 0,92% 0,100% 100%,0 100%)}
-.date-label-title{display:flex;align-items:center;gap:10px;white-space:nowrap}.calendar-open{border:1px solid rgba(255,255,255,.68);background:#fff;color:var(--navy);padding:9px 11px;border-radius:4px;font:inherit;font-size:10px;line-height:1.2;font-weight:800;text-transform:uppercase;letter-spacing:.025em;cursor:pointer;white-space:nowrap}.calendar-open:hover{background:#fff7e5;color:#8d681f}.calendar-open:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.calendar-modal[hidden]{display:none}.calendar-modal{position:fixed;inset:0;z-index:1000;background:rgba(5,25,49,.68);display:grid;place-items:center;padding:20px}.calendar-dialog{width:min(560px,100%);background:#fff;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.28);padding:28px;color:var(--ink)}.calendar-dialog-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}.calendar-dialog h2{font-family:Georgia,serif;color:var(--navy);margin:0;font-size:27px}.calendar-close{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:50%;font-size:24px;line-height:1;cursor:pointer;color:var(--navy)}.calendar-event{padding:13px 15px;background:#f7f8fa;border-left:4px solid var(--gold);margin-bottom:18px;font-size:13px}.reminder-set{border:0;padding:0;margin:0 0 19px}.reminder-set legend{font-weight:800;color:var(--navy);margin-bottom:9px}.reminder-option{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px}.reminder-option input{width:18px;height:18px;accent-color:var(--navy)}.calendar-note{font-size:12px;color:var(--muted);margin:0 0 18px}.calendar-actions{display:flex;gap:10px;flex-wrap:wrap}.calendar-actions button,.calendar-actions a{cursor:pointer}.calendar-status{min-height:1.4em;margin-top:12px;color:var(--navy);font-size:12px;font-weight:700}.date-item{padding:22px 18px;border-left:1px solid var(--line);text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:86px}.date-item strong{font-size:13px;color:var(--navy);text-transform:uppercase}.date-item span{font-size:11px;color:#353f4e;margin-top:5px}.date-item:last-child strong{color:var(--gold);font-size:15px}
-.overview{padding:40px 0 30px}.summary-grid{display:grid;grid-template-columns:1.05fr 1.08fr .95fr;gap:0;border-bottom:1px solid var(--line)}.summary-col{padding:0 34px 34px;border-right:1px solid var(--line)}.summary-col:first-child{padding-left:0}.summary-col:last-child{border-right:0;padding-right:0}.section-head{font-family:Georgia,serif;color:var(--navy);font-size:22px;margin:0 0 18px;text-transform:uppercase;letter-spacing:.01em}.section-head:after{content:"";display:block;width:42px;height:2px;background:var(--gold);margin-top:10px}.summary-col p{font-family:Georgia,serif;font-size:14px;line-height:1.75;margin:0 0 10px}.learn{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--gold);letter-spacing:.04em}.keynote-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.person{display:grid;grid-template-columns:90px 1fr;gap:15px;align-items:center}.portrait{width:90px;height:110px;border-radius:6px;background:linear-gradient(145deg,#e6e8eb,#fafafa);border:1px solid #d9dde2;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:28px;color:var(--navy)}.person .role{font-size:11px;color:var(--gold);font-weight:800;text-transform:uppercase;line-height:1.35}.person .name{font-family:Georgia,serif;font-size:18px;font-weight:700;color:var(--navy);margin:6px 0 3px}.person .affil{font-size:12px}.cfp-block p{font-family:Georgia,serif;font-size:14px}.deadline{font-weight:800;margin:12px 0 18px!important}.small-actions{display:flex;gap:10px;flex-wrap:wrap}.small-actions .btn{padding:11px 15px;font-size:10px}
-.detail-nav{display:flex;gap:12px;flex-wrap:wrap;padding:18px 0 0}.detail-nav a{padding:9px 13px;background:#f6f7f9;border:1px solid var(--line);font-size:11px;font-weight:700;color:var(--navy);border-radius:3px}
-.detail-section{padding:64px 0;border-top:1px solid #edf0f3}.detail-section.alt{background:#f7f8fa}.detail-title{font-family:Georgia,serif;font-size:38px;color:var(--navy);margin:0 0 20px}.detail-lead{max-width:900px;font-size:17px;color:#4a586d}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px}.card{border:1px solid var(--line);background:#fff;padding:24px;border-radius:7px}.card h3{font-family:Georgia,serif;color:var(--navy);margin:0 0 12px}.card ul{margin:0;padding-left:20px}.themes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}.theme{background:white;border-left:3px solid var(--gold);padding:16px 18px;border-top:1px solid #eceff2;border-right:1px solid #eceff2;border-bottom:1px solid #eceff2}.theme b{display:block;color:var(--navy);margin-bottom:3px}.notice{margin-top:24px;padding:16px 18px;border-left:4px solid var(--gold);background:#fff9ec}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--line);padding:11px 10px;text-align:left}th{color:var(--navy)}
-footer{background:linear-gradient(90deg,#06274c,#0d3d72);color:#fff;padding:28px 0}.footer-grid{display:grid;grid-template-columns:110px 1.5fr 1.5fr 1fr 1fr;align-items:center;gap:24px}.hosted{color:#d9a43a;font-weight:800;text-transform:uppercase;font-size:12px}.footer-item{padding-left:20px;border-left:1px solid rgba(255,255,255,.25);font-size:12px}.footer-item strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.02em}.mobile-menu{display:none}
-@media(max-width:1100px){.navlinks{display:none}.mobile-menu{display:block;color:var(--navy);font-weight:800}.hero-grid{grid-template-columns:1fr}.hero-copy{padding:50px 28px 40px}.hero-image{min-height:390px}.dates-wrap{margin-top:0}.datebar{grid-template-columns:repeat(3,1fr);border-radius:0}.date-label{grid-column:1/-1;clip-path:none;justify-content:center;flex-wrap:wrap}.date-label-title{white-space:normal}.summary-grid{grid-template-columns:1fr}.summary-col{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}.summary-col:last-child{border-bottom:0}.footer-grid{grid-template-columns:1fr 1fr}.hosted{grid-column:1/-1}}
-@media(max-width:700px){header{height:68px}.wrap{padding:0 20px}.brand{font-size:29px}.conference-tag{display:none}.hero-org{font-size:28px}.hero-annual{font-size:18px}.hero-theme{font-size:27px}.hero-details{display:grid;gap:14px}.meta+.meta{padding-left:0;border-left:0}.hero-image{min-height:290px;background-position:center}.datebar{grid-template-columns:1fr 1fr}.date-label{grid-column:1/-1}.calendar-dialog{padding:22px}.calendar-actions .btn{width:100%}.summary-grid{display:block}.keynote-row{grid-template-columns:1fr}.cards,.themes{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-item{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.2);padding-top:14px}}
+if out_dir.exists():
+    shutil.rmtree(out_dir)
+shutil.copytree(src_dir, out_dir)
 
-.footer-link{color:inherit;text-decoration:none;display:inline-block;transition:opacity .2s ease,color .2s ease}
-.footer-link:hover,.footer-link:focus-visible{color:#d2aa57;text-decoration:underline;text-underline-offset:4px}
-.footer-link:focus-visible{outline:2px solid #d2aa57;outline-offset:4px;border-radius:2px}
+index = out_dir / "index.html"
+text = index.read_text(encoding="utf-8")
 
-.portrait-photo{overflow:hidden;padding:0;background:#eef2f5;border:1px solid #d6dee7}.portrait-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top}.speaker-link{color:inherit;text-decoration:none}.speaker-link:hover,.speaker-link:focus{color:var(--gold);text-decoration:underline;text-underline-offset:3px}.speaker-link.subtle{font-weight:600}.keynote-linked .portrait-photo{transition:transform .2s ease,border-color .2s ease}.keynote-linked .portrait-photo:hover,.keynote-linked .portrait-photo:focus{transform:translateY(-2px);border-color:var(--gold)}
+# Ensure images/travel exists
+travel_img_dir = out_dir / "images" / "travel"
+travel_img_dir.mkdir(parents=True, exist_ok=True)
 
-/* Navigation and anchor usability fixes */
-html{scroll-padding-top:98px}
-section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:98px}
-.nav{position:relative;height:100%}
-.mobile-menu{font:inherit;background:transparent;border:0;padding:10px 8px;cursor:pointer;text-transform:uppercase;letter-spacing:.06em}
-.contact-link{color:var(--navy);font-weight:800;text-decoration:underline;text-decoration-color:rgba(185,138,53,.45);text-underline-offset:3px}
-.contact-link:hover,.contact-link:focus-visible{color:var(--gold)}
-.contact-cards{margin-top:24px}
+# Replace placeholder visual CSS with image-capable styling
+text = text.replace(
+""".walking-step-visual{aspect-ratio:16/10;background:linear-gradient(135deg,#eef3f7,#f8f7f2);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--navy);font-weight:800;font-size:13px;border-bottom:1px solid var(--line)}""",
+""".walking-step-visual{aspect-ratio:16/10;background:linear-gradient(135deg,#eef3f7,#f8f7f2);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-weight:800;font-size:13px;border-bottom:1px solid var(--line);overflow:hidden}
+.walking-step-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.walking-step-photo-fallback{padding:18px}"""
+)
 
-@media(max-width:1100px){
-  .navlinks{display:none;position:absolute;top:100%;left:0;right:0;z-index:60;background:#fff;border-top:1px solid #edf0f4;box-shadow:0 16px 30px rgba(16,42,72,.12);padding:10px 0 14px;flex-direction:column;align-items:stretch;gap:0}
-  .navlinks.is-open{display:flex}
-  .navlinks>a{display:block;padding:12px 20px;border-bottom:1px solid #f0f2f5;text-align:left}
-  .navlinks>a:last-child{border-bottom:0}
-  .navlinks .navcta{margin:10px 20px 0;text-align:center;padding:12px 18px}
-  .mobile-menu{display:block;color:var(--navy);font-weight:800}
-}
-@media(max-width:700px){
-  html{scroll-padding-top:82px}
-  section[id],.dates-wrap[id],.summary-col[id]{scroll-margin-top:82px}
-  .contact-cards{grid-template-columns:1fr}
-}
+# Replace four placeholders with future local image references and JS fallback
+replacements = [
+    ("Google Street View<br>opens in a new tab",
+     '<img src="images/travel/hyehwa-exit1.jpg" alt="Hyehwa Station Exit 1 walking guide" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="walking-step-photo-fallback" style="display:none">Photo to be added<br>Hyehwa Station Exit 1</div>'),
+    ("Follow the street toward<br>the SKKU access road",
+     '<img src="images/travel/hyehwa-straight.jpg" alt="Walking from Hyehwa Station toward SKKU" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="walking-step-photo-fallback" style="display:none">Photo to be added<br>Continue straight toward SKKU</div>'),
+    ("Turn toward<br>Sungkyunkwan University",
+     '<img src="images/travel/skku-access-road.jpg" alt="SKKU access road walking guide" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="walking-step-photo-fallback" style="display:none">Photo to be added<br>SKKU access road</div>'),
+    ("Destination:<br>SKKU Main Gate",
+     '<img src="images/travel/skku-main-gate.jpg" alt="Sungkyunkwan University main gate" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="walking-step-photo-fallback" style="display:none">Photo to be added<br>SKKU Main Gate</div>')
+]
 
+for old, new in replacements:
+    text = text.replace(f'<div class="walking-step-visual">{old}</div>',
+                        f'<div class="walking-step-visual">{new}</div>', 1)
 
-.membership-payment{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
-.membership-payment h4{margin:0 0 8px;font-family:Georgia,serif;color:var(--navy);font-size:20px}
-.membership-payment p,.registration-link-box p,.registration-wise{color:var(--muted);font-size:14px}
-.paypal-membership-form{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:14px}
-.paypal-membership-form label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--navy)}
-.paypal-membership-form select{width:min(100%,310px);padding:11px 12px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit}
-.paypal-cart-button{margin-top:4px;width:auto;height:auto}
-.registration-link-box{margin-top:18px;padding:16px;background:#f7f8fa;border-left:4px solid var(--gold)}
-.registration-link-box .btn{margin-top:4px}
-.registration-wise{margin-top:18px}
+# Update note to explain local photos will be added later, no API.
+old_note = ('Google Maps may show Street View imagery where coverage is available. The route should be rechecked shortly before the conference because streets, exits, and access conditions can change.')
+new_note = ('Walking-route photos will be added to this page before the conference. Google Maps links are provided as supplementary references. The route should be rechecked shortly before the conference because streets, exits, and access conditions can change.')
+text = text.replace(old_note, new_note)
 
-</style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q6C773XX7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1Q6C773XX7');
-</script>
+index.write_text(text, encoding="utf-8")
 
-</head>
-<body>
-<header><div class="wrap nav"><div class="brandbox"><div class="brand">SACP <span>at SKKU, South Korea</span></div><div class="conference-tag">59th Annual Conference · 2027<small>Society for Asian and Comparative Philosophy</small></div></div><nav class="navlinks" id="siteNav"><a href="#about">About</a><a href="#dates">Dates</a><a href="#themes">Themes</a><a href="#keynotes">Keynotes</a><a href="#cfp">CFP</a><a href="#awards">Awards</a><a href="#registration">Registration</a><a href="#travel">Venue & Travel</a><a href="#contact">Contact</a><a class="navcta" href="#cfp">Submit a Proposal</a></nav><button class="mobile-menu" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button></div></header>
-<main>
-<section class="hero"><div class="hero-grid"><div class="hero-copy"><div class="hero-org">SACP 2027</div><div class="hero-annual">59th Annual Conference · SKKU</div><div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#596579;font-weight:800;margin-top:-6px;margin-bottom:12px">Hosted with the Institute of Confucian Philosophy and Culture · Sungkyunkwan University</div><div class="gold-rule"></div><div class="hero-theme">Embodiment and Agency<br>Across Texts and Traditions</div><div class="hero-details"><div class="meta"><div class="icon">▣</div><div>June 4–7, 2027<small>Fri – Mon</small></div></div><div class="meta"><div class="icon">●</div><div>Sungkyunkwan University (SKKU)<small>Seoul, South Korea</small></div></div></div><div class="actions"><a class="btn primary" href="#cfp">Submit a Proposal</a><a class="btn secondary" href="#registration">Registration Info</a></div></div><div class="hero-image" role="img" aria-label="Myeongnyundang at Sungkyunkwan University"></div></div></section>
-<div class="dates-wrap" id="dates"><div class="datebar"><div class="date-label"><div class="date-label-title"><span>▣</span><span>Important Dates</span></div><button class="calendar-open" type="button" id="openCalendar" aria-haspopup="dialog" aria-controls="calendarModal">+ Add to Calendar</button></div><div class="date-item"><strong>Nov 15, 2026</strong><span>Proposal Deadline</span></div><div class="date-item"><strong>Nov 15, 2026</strong><span>Graduate Essay Deadline</span></div><div class="date-item"><strong>Dec 7, 2026</strong><span>Notification of Acceptance</span></div><div class="date-item"><strong>Feb 28, 2027</strong><span>Early Registration Deadline</span></div><div class="date-item"><strong>May 7, 2027</strong><span>Final Presenter Registration</span></div><div class="date-item"><strong>June 4–7, 2027</strong><span>Conference</span></div></div></div>
-<section class="overview" id="about"><div class="wrap"><div class="summary-grid"><div class="summary-col"><h2 class="section-head">About the Conference</h2><p>Across Asian and comparative philosophical traditions, embodiment has long been central to questions of self, ethics, community, and the human relationship to the world.</p><p>At a time of rapid technological change, ecological crisis, and global uncertainty, this conference invites renewed reflection on how texts, traditions, and lived experience shape agency, responsibility, and philosophical dialogue across cultures.</p><a class="learn" href="#about-more">Learn More →</a></div><div class="summary-col" id="keynotes"><h2 class="section-head">Keynote Speakers</h2><div class="keynote-row"><div class="person keynote-linked"><a class="portrait portrait-photo" href="https://philosophy.fudan.edu.cn/philoenglish/86/98/c48705a755352/page2.htm" target="_blank" rel="noopener noreferrer" aria-label="View Professor Yong Huang's Fudan University profile"><img src="https://philosophy.fudan.edu.cn/_upload/article/images/c3/3c/1cc918d74ef5a8c500d2fa535a61/93ae5e3a-ee4b-418f-bd6c-0cc434550cf4_s.jpg" alt="Professor Yong Huang, Fudan University"></a><div><div class="role">East Asian Philosophy Keynote</div><div class="name"><a class="speaker-link" href="https://philosophy.fudan.edu.cn/philoenglish/86/98/c48705a755352/page2.htm" target="_blank" rel="noopener noreferrer">Professor Yong Huang</a></div><div class="affil"><a class="speaker-link subtle" href="https://philosophy.fudan.edu.cn/philoenglish/86/98/c48705a755352/page2.htm" target="_blank" rel="noopener noreferrer">Fudan University ↗</a></div></div></div><div class="person keynote-linked"><a class="portrait portrait-photo" href="https://philosophy.utoronto.ca/directory/elisa-freschi/" target="_blank" rel="noopener noreferrer" aria-label="View Professor Elisa Freschi's University of Toronto profile"><img src="https://philosophy.utoronto.ca/wp-content/uploads/elisa-freschi-utoronto-philosophy.jpg" alt="Professor Elisa Freschi, University of Toronto"></a><div><div class="role">South Asian Philosophy Keynote</div><div class="name"><a class="speaker-link" href="https://philosophy.utoronto.ca/directory/elisa-freschi/" target="_blank" rel="noopener noreferrer">Professor Elisa Freschi</a></div><div class="affil"><a class="speaker-link subtle" href="https://philosophy.utoronto.ca/directory/elisa-freschi/" target="_blank" rel="noopener noreferrer">University of Toronto ↗</a></div></div></div></div></div><div class="summary-col cfp-block"><h2 class="section-head">Call for Proposals</h2><p>We invite individual paper proposals and panel proposals. Submission via Qualtrics.</p><p class="deadline">Deadline: November 15, 2026</p><div class="small-actions"><a class="btn primary" href="https://qualtricsxmq2f9z9njk.qualtrics.com/jfe/form/SV_003MRrwBI1MwQ1U" target="_blank" rel="noopener noreferrer">Individual Paper Proposal</a><a class="btn secondary" href="https://qualtricsxmq2f9z9njk.qualtrics.com/jfe/form/SV_1U1V7f4PfcAhL1Q" target="_blank" rel="noopener noreferrer">Panel Proposal</a><a class="btn secondary" href="#cfp">View CFP</a></div></div></div><div class="detail-nav"><a href="#themes">Conference Themes</a><a href="#cfp">Submission Guidelines</a><a href="#awards">Graduate Awards</a><a href="#registration">Registration</a><a href="#travel">Venue & Travel</a></div></div></section>
-<section class="detail-section alt" id="themes"><div class="wrap"><h2 class="detail-title">Conference Themes</h2><p class="detail-lead">Possible topics include, but are not limited to:</p><div class="themes"><div class="theme"><b>Embodiment, Agency, and Lived Experience</b>Asian and comparative philosophies</div><div class="theme"><b>Texts, Traditions, and Philosophical Dialogue</b>Comparative approaches to texts and traditions</div><div class="theme"><b>Self, Ethics, and Community</b>Asian philosophical and religious perspectives</div><div class="theme"><b>Feminist, Decolonial, and Postcolonial Approaches</b>Embodiment and agency</div><div class="theme"><b>Technology and Artificial Intelligence</b>Human responsibility and agency</div><div class="theme"><b>Ecology and Planetary Justice</b>Human responsibility in a changing world</div><div class="theme"><b>Religion, Philosophy, and the Human Future</b>Cross-cultural engagements</div></div></div></section>
-<section class="detail-section" id="cfp"><div class="wrap"><h2 class="detail-title">Call for Proposals</h2><div class="cards"><div class="card"><h3>Individual Paper Proposals</h3><ul><li>Title</li><li>Abstract of 200–300 words</li><li>Presenter’s name, institutional affiliation, and email address</li></ul><div class="small-actions"><a class="btn primary" href="https://qualtricsxmq2f9z9njk.qualtrics.com/jfe/form/SV_003MRrwBI1MwQ1U" target="_blank" rel="noopener noreferrer">Submit Individual Paper Proposal</a></div></div><div class="card"><h3>Panel Proposals</h3><p>Panel submissions may be either <strong>standard panels</strong> or <strong>alternative-format panels/sessions</strong>, including roundtables, workshops, author-meets-reader sessions, and similar formats.</p><ul><li>Panel/session title</li><li>200–300 word panel/session description</li><li>Title and abstract of each paper, where applicable</li><li>Name, institutional affiliation, and email address of each participant, including the panel moderator or session organizer</li></ul><div class="small-actions"><a class="btn primary" href="https://qualtricsxmq2f9z9njk.qualtrics.com/jfe/form/SV_1U1V7f4PfcAhL1Q" target="_blank" rel="noopener noreferrer">Submit Panel Proposal</a></div></div></div><div class="notice"><strong>Submission method:</strong> Qualtrics · <strong>Proposal deadline:</strong> November 15, 2026<br>Please use the appropriate submission form above for individual papers or panel/session proposals.</div></div></section>
-<section class="detail-section alt" id="awards"><div class="wrap"><h2 class="detail-title">Graduate Student Essay Contest</h2><p class="detail-lead">SACP awards prizes for the top three papers presented by graduate students: First Place, Second Place, and Third Place.</p><p>Students must attend the conference and present their papers to be eligible. Those who wish their papers to be considered must submit both an abstract and a complete essay of no more than 5,000 words to SACP Secretary Kevin Taylor at <strong><a class="contact-link" href="mailto:SACPcontact@gmail.com">SACPcontact@gmail.com</a></strong> by <strong>November 15, 2026</strong>.</p></div></section>
-<section class="detail-section" id="registration"><div class="wrap"><h2 class="detail-title">Registration &amp; Membership</h2><p class="detail-lead">All presenters must be current SACP members and complete conference registration in order to participate in the conference and appear on the final program.</p><div class="notice" style="margin-bottom:22px"><strong>Two separate payments are required for all presenters:</strong> SACP Membership Dues and Conference Registration.</div><div class="cards"><div class="card"><h3>1. SACP Membership Dues</h3><table><tr><th>Category</th><th>Fee</th></tr><tr><td>Regular</td><td>$50</td></tr><tr><td>Student</td><td>$30</td></tr><tr><td>Emeritus</td><td>$30</td></tr></table><div class="membership-payment"><h4>Pay SACP Membership Dues</h4><p>Select your membership category below. Payment is processed through the official SACP PayPal account.</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-membership-form"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="CP83D5M6VGW8N"><input type="hidden" name="on0" value="Membership"><label for="sacp-membership-type">Membership</label><select name="os0" id="sacp-membership-type"><option value="Regular">Regular $50.00 USD</option><option value="Student">Student $30.00 USD</option><option value="Emeritus">Emeritus $30.00 USD</option></select><input type="hidden" name="currency_code" value="USD"><input class="paypal-cart-button" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Add SACP Membership Dues to PayPal Cart"></form>
-<p class="small-note"><strong>This is the same official SACP membership payment option provided on the SACP 2027 conference page.</strong></p></div></div><div class="card"><h3>2. Conference Registration</h3><table><tr><th>Period</th><th>Regular</th><th>Student / Emeritus</th></tr><tr><td>Early</td><td>$150</td><td>$30</td></tr><tr><td>Late</td><td>$200</td><td>$50</td></tr></table><p><strong>Early-registration deadline:</strong> February 28, 2027</p><p><strong>Late-registration period:</strong> March 1–May 7, 2027</p><p><strong>Final presenter registration deadline:</strong> May 7, 2027</p><div class="registration-link-box"><p>PayPal registration/payment links will be posted <strong>after acceptance notifications are sent.</strong></p>
+# Replace setup doc with local-photo instructions
+setup = out_dir / "TRAVEL_PHOTO_SETUP.md"
+setup.write_text("""# Travel walking-guide photos
 
-</div><p class="registration-wise"><strong>Wise payments:</strong> Those paying via Wise must contact the SACP Treasurer.</p></div></div><div class="notice">Accepted presenters who have not completed conference registration by <strong>May 7, 2027</strong> may be removed from the conference program.</div></div></section>
-<section class="detail-section alt" id="travel"><div class="wrap"><h2 class="detail-title">Venue & Travel</h2><div class="cards"><div class="card"><h3>Conference Venue</h3><p><strong>Sungkyunkwan University (SKKU)<br>Humanities and Social Sciences Campus</strong></p><p><strong>Address</strong><br>(03063) 25-2, Sungkyunkwan-ro, Jongno-gu,<br>Seoul, Republic of Korea</p><p>Detailed information concerning conference rooms will be announced.</p><div class="small-actions"><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=25-2%20Sungkyunkwan-ro%2C%20Jongno-gu%2C%20Seoul%2C%20Republic%20of%20Korea" target="_blank" rel="noopener noreferrer">View in Google Maps</a><a class="btn secondary" href="https://maps.apple.com/?q=Sungkyunkwan%20University%20Humanities%20and%20Social%20Sciences%20Campus&address=25-2%20Sungkyunkwan-ro%2C%20Jongno-gu%2C%20Seoul%2C%20Republic%20of%20Korea" target="_blank" rel="noopener noreferrer">View in Apple Maps</a></div></div><div class="card"><h3>From Incheon International Airport</h3><p>Participants arriving at Incheon International Airport are advised to consult the airport’s official transportation guide for current information on buses, trains, taxis, and other ground transportation options to Seoul.</p><p>Because the most convenient route may vary according to your terminal, arrival time, accommodation, and destination in Seoul, please check the latest transportation information directly through the Incheon International Airport website.</p><div class="small-actions"><a class="btn primary" href="https://www.airport.kr/ap_en/1504/subview.do" target="_blank" rel="noopener noreferrer">Incheon Airport Transportation Guide</a></div></div><div class="card"><h3>Accommodation & Visa</h3><p><strong>Hotel information:</strong> TBA</p><p>International participants should consult the official Korea Visa Portal for current visa and entry requirements.</p><a class="btn secondary" href="https://www.visa.go.kr/" target="_blank" rel="noopener">Korea Visa Portal</a></div></div></div></section>
+This version does not use the Google Street View Static API.
 
-<section class="detail-section contact-section" id="contact"><div class="wrap"><div class="eyebrow">Contact</div><h2 class="detail-title">Conference Contact</h2><p class="detail-lead">For questions concerning SACP 2027, please use the contact channels below.</p><div class="cards contact-cards"><div class="card"><h3>Email</h3><p><a class="contact-link" href="mailto:SACPcontact@gmail.com">SACPcontact@gmail.com</a></p><p><small>General conference inquiries and graduate essay submissions.</small></p></div><div class="card"><h3>SACP Website</h3><p><a class="contact-link" href="https://www.sacpweb.org" target="_blank" rel="noopener noreferrer">www.sacpweb.org ↗</a></p><p><small>Society for Asian and Comparative Philosophy.</small></p></div></div><div class="notice"><strong>Conference communication:</strong> Any additional communication channel intended for use during the conference will be announced here at a later date if established.</div></div></section>
-</main>
-<footer><div class="wrap footer-grid"><div class="hosted">Hosted By</div><div class="footer-item"><a class="footer-link" href="https://swb.skku.edu/ccecc-en/index.do" target="_blank" rel="noopener noreferrer" aria-label="Visit Center for the Contemporary Study of East Asian Classics and Critical Confucianism website"><strong>Center for the Contemporary Study of East Asian Classics and Critical Confucianism (CCECC)</strong></a></div><div class="footer-item"><a class="footer-link" href="https://ygmh.skku.edu/ygmh/index.do#a" target="_blank" rel="noopener noreferrer" aria-label="Visit Institute of Confucian Philosophy and Culture website"><strong>Institute of Confucian Philosophy and Culture</strong>Sungkyunkwan University</a></div><div class="footer-item">✉ &nbsp; <a class="footer-link" href="mailto:SACPcontact@gmail.com">SACPcontact@gmail.com</a></div><div class="footer-item">◎ &nbsp; <a class="footer-link" href="https://www.sacpweb.org" target="_blank" rel="noopener noreferrer">www.sacpweb.org</a></div></div></footer>
+Place four local image files in:
 
-<div class="calendar-modal" id="calendarModal" role="dialog" aria-modal="true" aria-labelledby="calendarTitle" hidden>
-  <div class="calendar-dialog">
-    <div class="calendar-dialog-head">
-      <div><h2 id="calendarTitle">Add SACP 2027 important dates</h2><div style="font-size:12px;color:var(--gold);font-weight:800;text-transform:uppercase;margin-top:4px">6 important dates · 2026–2027</div></div>
-      <button class="calendar-close" id="closeCalendar" type="button" aria-label="Close calendar options">×</button>
-    </div>
-    <div class="calendar-event"><strong>All SACP 2027 Important Dates</strong><br>Proposal & Graduate Essay Deadlines · Acceptance Notification · Registration Deadlines · Conference</div>
-    <p class="calendar-note">Choose your calendar. Apple/iPhone Calendar receives all six dates in one calendar file. Google Calendar opens six pre-filled event pages; save each event to add all dates.</p>
-    <div class="calendar-actions">
-      <button type="button" class="btn primary" id="downloadIcs" aria-label="Add all six SACP 2027 dates to iPhone or Apple Calendar"> Add All to iPhone / Apple Calendar</button>
-      <button type="button" class="btn secondary" id="googleCalendar" aria-label="Open all six SACP 2027 dates in Google Calendar">Add All to Google Calendar</button>
-    </div>
-    <div class="calendar-status" id="calendarStatus" aria-live="polite"></div>
-  </div>
-</div>
-<script>
-(function(){
-  const modal = document.getElementById('calendarModal');
-  const openBtn = document.getElementById('openCalendar');
-  const closeBtn = document.getElementById('closeCalendar');
-  const downloadBtn = document.getElementById('downloadIcs');
-  const googleBtn = document.getElementById('googleCalendar');
-  const status = document.getElementById('calendarStatus');
-  let lastFocus = null;
+images/travel/
 
-  const commonLocation = 'Sungkyunkwan University (SKKU), Seoul, South Korea';
-  const commonDescription = 'SACP 2027 — Society for Asian and Comparative Philosophy, 59th Annual Conference. Embodiment and Agency Across Texts and Traditions.';
+Use these exact filenames:
 
-  const events = [
-    { id:'proposal-deadline', title:'SACP 2027 — Proposal Deadline', start:'20261115', end:'20261116', location:'', details:'Proposal deadline for SACP 2027. ' + commonDescription, alarms:['-P7D','-P1D'] },
-    { id:'graduate-essay-deadline', title:'SACP 2027 — Graduate Essay Deadline', start:'20261115', end:'20261116', location:'', details:'Graduate Essay Deadline for SACP 2027. ' + commonDescription, alarms:['-P7D','-P1D'] },
-    { id:'acceptance-notification', title:'SACP 2027 — Notification of Acceptance', start:'20261207', end:'20261208', location:'', details:'Notification of Acceptance for SACP 2027. ' + commonDescription, alarms:['-P1D'] },
-    { id:'early-registration', title:'SACP 2027 — Early Registration Deadline', start:'20270228', end:'20270301', location:'', details:'Early Registration Deadline for SACP 2027. ' + commonDescription, alarms:['-P7D','-P1D'] },
-    { id:'presenter-registration', title:'SACP 2027 — Final Presenter Registration', start:'20270507', end:'20270508', location:'', details:'Final Presenter Registration deadline for SACP 2027. ' + commonDescription, alarms:['-P7D','-P1D'] },
-    { id:'conference', title:'SACP 59th Annual Conference — Embodiment and Agency Across Texts and Traditions', start:'20270604', end:'20270608', location:commonLocation, details:commonDescription, alarms:['-P31D','-P7D','-P1D'] }
-  ];
+1. hyehwa-exit1.jpg
+2. hyehwa-straight.jpg
+3. skku-access-road.jpg
+4. skku-main-gate.jpg
 
-  function escIcs(value){
-    return String(value || '')
-      .replace(/\\/g, '\\\\')
-      .replace(/;/g, '\\;')
-      .replace(/,/g, '\\,')
-      .replace(/\r?\n/g, '\\n');
-  }
+If an image is missing, the page automatically shows a "Photo to be added" placeholder.
 
-  function foldIcsLine(line){
-    const limit = 74;
-    let out = '';
-    while(line.length > limit){
-      out += line.slice(0, limit) + '\r\n ';
-      line = line.slice(limit);
-    }
-    return out + line;
-  }
+Recommended format:
+- JPG
+- Landscape orientation
+- About 1600 × 1000 px or similar 16:10 ratio
+- Compress each image to roughly 300–700 KB for fast mobile loading
 
-  function stamp(){
-    return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-  }
+The Google Maps / Street View links remain as external reference links only.
+""", encoding="utf-8")
 
-  function alarmBlock(trigger, label){
-    return [
-      'BEGIN:VALARM',
-      'ACTION:DISPLAY',
-      'DESCRIPTION:' + escIcs(label),
-      'TRIGGER:' + trigger,
-      'END:VALARM'
-    ];
-  }
+# Remove previous API-oriented setup doc if present
+old_setup = out_dir / "STREET_VIEW_SETUP.md"
+if old_setup.exists():
+    old_setup.unlink()
 
-  function buildIcs(){
-    const lines = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//SACP//SACP 2027 Important Dates//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'X-WR-CALNAME:SACP 2027 Important Dates'
-    ];
+# Add placeholder README inside travel image folder
+(out_dir / "images" / "travel" / "README.txt").write_text(
+"""Add the walking-route photos here using these filenames:
+hyehwa-exit1.jpg
+hyehwa-straight.jpg
+skku-access-road.jpg
+skku-main-gate.jpg
+""", encoding="utf-8"
+)
 
-    events.forEach(function(ev){
-      lines.push(
-        'BEGIN:VEVENT',
-        'UID:sacp2027-' + ev.id + '@sacpweb.org',
-        'DTSTAMP:' + stamp(),
-        'DTSTART;VALUE=DATE:' + ev.start,
-        'DTEND;VALUE=DATE:' + ev.end,
-        'SUMMARY:' + escIcs(ev.title),
-        'DESCRIPTION:' + escIcs(ev.details)
-      );
-      if(ev.location) lines.push('LOCATION:' + escIcs(ev.location));
-      ev.alarms.forEach(function(trigger){
-        lines.push(...alarmBlock(trigger, ev.title));
-      });
-      lines.push('END:VEVENT');
-    });
+# Zip package
+zip_path = Path("/mnt/data/sacp2027_github_ready_walking_photos.zip")
+if zip_path.exists():
+    zip_path.unlink()
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for f in out_dir.rglob("*"):
+        if f.is_file():
+            z.write(f, f.relative_to(out_dir))
 
-    lines.push('END:VCALENDAR');
-    return lines.map(foldIcsLine).join('\r\n') + '\r\n';
-  }
-
-  function googleUrl(ev){
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: ev.title,
-      dates: ev.start + '/' + ev.end,
-      details: ev.details,
-      ctz: 'Asia/Seoul'
-    });
-    if(ev.location) params.set('location', ev.location);
-    return 'https://calendar.google.com/calendar/render?' + params.toString();
-  }
-
-  function openModal(){
-    if(!modal) return;
-    lastFocus = document.activeElement;
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    if(status) status.textContent = '';
-    if(closeBtn) closeBtn.focus();
-  }
-
-  function closeModal(){
-    if(!modal) return;
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    if(lastFocus) lastFocus.focus();
-  }
-
-  if(openBtn) openBtn.addEventListener('click', openModal);
-  if(closeBtn) closeBtn.addEventListener('click', closeModal);
-  if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
-  document.addEventListener('keydown', function(e){ if(modal && !modal.hidden && e.key === 'Escape') closeModal(); });
-
-  if(downloadBtn){
-    downloadBtn.addEventListener('click', function(){
-      const blob = new Blob([buildIcs()], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'SACP-2027-Important-Dates.ics';
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
-      if(status) status.textContent = 'All six SACP 2027 dates are included in one Apple Calendar file.';
-    });
-  }
-
-  if(googleBtn){
-    googleBtn.addEventListener('click', function(){
-      let opened = 0;
-      events.forEach(function(ev){
-        const w = window.open(googleUrl(ev), '_blank', 'noopener');
-        if(w) opened++;
-      });
-      if(status){
-        status.textContent = opened === events.length
-          ? 'Six Google Calendar event pages opened. Save each event to add all dates.'
-          : 'Your browser blocked some Google Calendar windows. Please allow pop-ups for this site and click again.';
-      }
-    });
-  }
-})();
-</script>
-
-<script>
-(function(){
-  const menuButton = document.getElementById('mobileMenuButton');
-  const siteNav = document.getElementById('siteNav');
-  if(!menuButton || !siteNav) return;
-
-  function closeMenu(){
-    siteNav.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded','false');
-    menuButton.textContent = 'Menu';
-  }
-
-  menuButton.addEventListener('click', function(){
-    const open = siteNav.classList.toggle('is-open');
-    menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menuButton.textContent = open ? 'Close' : 'Menu';
-  });
-
-  siteNav.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', closeMenu);
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeMenu();
-  });
-
-  window.addEventListener('resize', function(){
-    if(window.innerWidth > 1100) closeMenu();
-  });
-})();
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const trackedLinks = [
-    {
-      selector: 'a[href*="SV_003MRrwBI1MwQ1U"]',
-      eventName: 'individual_proposal_click',
-      label: 'Individual Paper Proposal'
-    },
-    {
-      selector: 'a[href*="SV_1U1V7f4PfcAhL1Q"]',
-      eventName: 'panel_proposal_click',
-      label: 'Panel Proposal'
-    }
-  ];
-
-  trackedLinks.forEach(function (item) {
-    document.querySelectorAll(item.selector).forEach(function (el) {
-      el.addEventListener('click', function () {
-        if (typeof gtag === 'function') {
-          gtag('event', item.eventName, {
-            event_category: 'conference_action',
-            event_label: item.label,
-            link_url: el.href
-          });
-        }
-      });
-    });
-  });
-
-  const hostedButton = document.querySelector(
-    'form[action="https://www.paypal.com/cgi-bin/webscr"] input[name="hosted_button_id"][value="CP83D5M6VGW8N"]'
-  );
-
-  if (hostedButton) {
-    const form = hostedButton.closest('form');
-    if (form) {
-      form.addEventListener('submit', function () {
-        const membershipType = form.querySelector('select[name="os0"]');
-        if (typeof gtag === 'function') {
-          gtag('event', 'membership_payment_click', {
-            event_category: 'conference_action',
-            event_label: 'SACP Membership PayPal',
-            membership_type: membershipType ? membershipType.value : ''
-          });
-        }
-      });
-    }
-  }
-
-  document.querySelectorAll('[data-ga-event]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      const eventName = el.getAttribute('data-ga-event');
-      if (eventName && typeof gtag === 'function') {
-        gtag('event', eventName, {
-          event_category: 'conference_action',
-          event_label: el.textContent.trim(),
-          link_url: el.href || ''
-        });
-      }
-    });
-  });
-});
-</script>
-
-</body></html>
+print(f"Created: {index}")
+print(f"Created: {zip_path}")
